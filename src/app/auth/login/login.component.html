@@ -1,0 +1,32 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center center"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+        type="email"
+        matInput
+        placeholder="Your email"
+        formControlName="email"
+      >
+      <mat-error>Email is invalid</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        placeholder="Password"
+        matInput
+        type="password"
+        formControlName="password"
+
+      >
+      <mat-hint align="end">{{loginForm.value.password.length}} / 6</mat-hint>
+    </mat-form-field>
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary"
+            [disabled]="loginForm.invalid">Submit
+    </button>
+    <mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+  </form>
+</section>
